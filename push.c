@@ -2,7 +2,7 @@
 
 /**
  * is_integer - Check if a string contains a valid int.
- * @str - Str to check.
+ * @str: - Str to check.
  *
  * Return: true else false.
  */
@@ -51,10 +51,10 @@ void push(stack_t **stack, unsigned int value)
 
 	new_node->n = atoi_value;
 	new_node->prev = NULL;
+	new_node->next = *stack;
 
 	if (*stack != NULL)
 	{
-		new_node->next = *stack;
 		(*stack)->prev = new_node;
 	}
 	*stack = new_node;
