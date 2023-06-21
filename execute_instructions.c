@@ -8,6 +8,21 @@ static instruction_t instructions[] = {
 };
 
 /**
+ * free_mem - Free memory.
+ * @curr: - Current stack.
+ */
+void free_mem(stack_t *curr)
+{
+	while (curr != NULL)
+	{
+		stack_t *temp = curr;
+
+		curr = curr->next;
+		free(temp);
+	}
+}
+
+/**
  * execute_instructions - Executes monty bytecode instructions.
  * @file: File pointer.
  */
@@ -15,7 +30,7 @@ void execute_instructions(FILE *file)
 {
 	char buffer[256];
 	int line_number = 1, i, flag = 0;
-
+	stack_t *curr;
 	stack_t *stack = NULL;
 
 	while (fgets(buffer, sizeof(buffer), file))
@@ -23,7 +38,6 @@ void execute_instructions(FILE *file)
 		char *opcode;
 
 		buffer[strcspn(buffer, "\n")] = '\0'; /* Remove white space */
-
 		opcode = strtok(buffer, " "); /* Tokenize instruction */
 
 		if (opcode == NULL)
@@ -32,7 +46,6 @@ void execute_instructions(FILE *file)
 				line_number);
 			exit(EXIT_FAILURE);
 		}
-
 		for (i = 0; instructions[i].opcode != NULL; i++)
 		{
 			if (strcmp(opcode, instructions[i].opcode) == 0)
@@ -50,4 +63,6 @@ void execute_instructions(FILE *file)
 		}
 		line_number++;
 	}
+	curr = stack;
+	free_mem(curr);
 }
