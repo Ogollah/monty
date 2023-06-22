@@ -14,6 +14,9 @@ static instruction_t instructions[] = {
 	{"mul", mul},
 	{"mod", mod},
 	{"pchar", pchar},
+	{"pstr", pstr},
+	{"stack", stack},
+	{"queue", queue},
 	{NULL, NULL}
 };
 
