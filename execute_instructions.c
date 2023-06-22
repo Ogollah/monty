@@ -9,6 +9,10 @@ static instruction_t instructions[] = {
 	{"swap", swap},
 	{"add", add},
 	{"nop", nop},
+	{"sub", sub},
+	{"div", _div},
+	{"mul", mul},
+	{"mod", mod},
 	{NULL, NULL}
 };
 
